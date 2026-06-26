@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete Student
+{% endblock %}
+
+{% block content %}
+
+{% if errors %}
+
+<div class="error-box">
+    <h1 class="error-message">{{ errors }}</h1>
+</div>
+
+{% else %}
+
+<div class="delete-container">
+
+    <h1 class="delete-title">Delete Student</h1>
+
+    <div class="confirm-box">
+        <p class="confirm-text">
+            Are you sure you want to delete <span>{{ student.name }}</span>'s record?
+        </p>
+    </div>
+
+    <form action="" method="POST" class="delete-form">
+
+        {% csrf_token %}
+
+        <div class="actions">
+            <button type="submit" class="danger-btn">
+                Delete
+            </button>
+        </div>
+
+        <div class="button-div">
+            <a href="{% url 'display' %}" class="cancel-btn">
+                Cancel
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endif %}
+
+{% endblock content %}

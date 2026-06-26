@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Student Form
+{% endblock title %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h1 class="form-title">{{ operation }}</h1>
+    <hr class="line">
+
+    <div class="form-card">
+
+        {% if errors %}
+            <h2 class="error">{{ errors }}</h2>
+        {% else %}
+
+        <form action="" method="POST" class="student-form">
+            {% csrf_token %}
+
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="{{ student.name }}" required>
+
+            <label for="roll_no">Roll No</label>
+            <input type="text" name="roll_no" id="roll_no" value="{{ student.roll_no }}" required>
+
+            <label for="marks">Marks</label>
+            <input type="number" name="marks" id="marks" value="{{ student.marks }}" required>
+
+            <label for="address">Address</label>
+            <textarea name="address" id="address">{{ student.address }}</textarea>
+
+            <label for="course">Course</label>
+            <select name="course">
+                <option value="">----Select Course----</option>
+                <option value="JFS" {% if student.course == 'JFS' %} selected {% endif %}>Java Full Stack</option>
+                <option value="PFS" {% if student.course == 'PFS' %} selected {% endif %}>Python Full Stack</option>
+                <option value="MERN" {% if student.course == 'MERN' %} selected {% endif %}>MERN Full Stack</option>
+                <option value="DS" {% if student.course == 'DS' %} selected {% endif %}>Data Science</option>
+            </select>
+
+            <button type="submit" class="submit-btn">
+                {{ operation }}
+            </button>
+
+        </form>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock content %}

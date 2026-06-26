@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Students Details
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'create' %}" class="create-btn">+ Create Student</a>
+</div>
+
+<h1 class="page-title">Students Records</h1>
+
+<hr class="title-line">
+
+<table class="student-table">
+    <tr>
+        <th>Sl No</th>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Marks</th>
+        <th>Course</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+
+    <tbody>
+        {% for student in student %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.roll_no }}</td>
+            <td>{{ student.marks }}</td>
+            <td>{{ student.course }}</td>
+            <td>{{ student.address }}</td>
+            <td>
+                <a href="{% url 'update' student.id %}" class="update-btn">Update</a>
+                <a href="{% url 'delete' student.id %}" class="delete-btn">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
